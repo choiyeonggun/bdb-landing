@@ -67,7 +67,7 @@ export default function Footer() {
               사진, 매물, 뉴스 - 사이트내 모든 정보는 보호됩니다.
             </p>
             <motion.a
-              href="https://map.naver.com/p/search/%EC%84%9C%EC%9A%B8%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%84%9C%EA%B5%90%EB%8F%99%20370-28/address/14128607.6218105,4516415.7230631,%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EB%A7%88%ED%8F%AC%EA%B5%AC%20%EC%84%9C%EA%B5%90%EB%8F%99%20370-28,jibun?c=15.00,0,0,0,dh&isCorrectAnswer=true"
+              href="https://naver.me/IGJyPvMr"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
