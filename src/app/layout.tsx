@@ -60,6 +60,7 @@ export default function RootLayout({
     <html lang="ko">
       <head>
         <JsonLd />
+        <meta name="naver-site-verification" content="87a0c78c424cd2b7e68fb70695c441d4e5a39c2a" />
         <link rel="apple-touch-icon" sizes="57x57" href="/favicon/apple-icon-57x57.png" />
         <link rel="apple-touch-icon" sizes="60x60" href="/favicon/apple-icon-60x60.png" />
         <link rel="apple-touch-icon" sizes="72x72" href="/favicon/apple-icon-72x72.png" />
