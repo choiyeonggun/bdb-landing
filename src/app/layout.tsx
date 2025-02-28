@@ -49,6 +49,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://bdbagent.kr'
   },
+  verification: {
+    naver: 'naver22a0add3c3c0c7bc0eafcb96d0bcad4d'
+  },
 };
 
 export default function RootLayout({
