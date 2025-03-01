@@ -2,7 +2,6 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
-import { PhoneIcon } from '@heroicons/react/24/outline'
 
 export default function Hero() {
   return (
