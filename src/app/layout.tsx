@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     default: 'BDB부동산 - 홍대입구 상가, 사무실 부동산 전문',
     template: '%s | BDB부동산'
   },
-  description: '홍대, 합정, 연남동 지역 부동산 전문. 상가, 사무실 매매 및 임대차. 무권리, 통임대, 사옥, 카페, 스튜디오 등 다양한 매물 보유. 친절하고 전문적인 상담.',
+  description: '홍대, 합정, 연남동 지역 부동산 전문. 상가, 사무실 매매 및 임대차 전문. 무권리, 통임대 등 다양한 매물 보유.',
   keywords: [
     '홍대부동산추천', '합정부동산추천', '홍대상가', '홍대사무실', '홍대부동산', 
     '홍대무권리', '합정상가', '합정부동산', '합정사무실', '연남동부동산', 
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
     locale: 'ko_KR',
     url: 'https://bdb-estate.com',
     title: 'BDB부동산 - 홍대입구 상가, 사무실 부동산 전문',
-    description: '홍대, 합정, 상수, 망원 지역의 상가, 사무실 부동산 전문. 점포, 사무실, 주택 매매 및 임대차 전문 부동산',
+    description: '홍대, 합정, 상수, 망원 지역의 상가, 사무실 부동산 전문. 점포, 사무실, 주택 매매 및 임대차 전문.',
     siteName: 'BDB부동산',
     images: [{
       url: '/images/og-image.jpg',
@@ -48,7 +48,15 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://bdbagent.kr'
-  }
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function RootLayout({
