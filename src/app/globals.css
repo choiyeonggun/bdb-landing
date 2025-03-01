@@ -46,6 +46,18 @@ body {
   100% { color: #60A5FA; }
 }
 
+@keyframes gradient-x {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 .animate-rainbow-text {
-  animation: rainbow-text 2s linear infinite;
+  animation: rainbow-text 1s linear infinite;
+  text-shadow: 0 0 10px rgba(255,255,255,0.5);
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 3s linear infinite;
 }

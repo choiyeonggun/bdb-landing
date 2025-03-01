@@ -2,10 +2,48 @@
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import confetti from 'canvas-confetti'
 
 export default function Hero() {
   const [easterEgg, setEasterEgg] = useState(false)
   const [keySequence, setKeySequence] = useState('')
+
+  const triggerEasterEgg = () => {
+    setEasterEgg(true)
+    
+    // 폭죽 효과
+    const duration = 3 * 1000
+    const animationEnd = Date.now() + duration
+    
+    const randomInRange = (min: number, max: number) => {
+      return Math.random() * (max - min) + min
+    }
+
+    const firework = () => {
+      const timeLeft = animationEnd - Date.now()
+      if (timeLeft <= 0) return
+      
+      // 더 화려한 폭죽 효과
+      confetti({
+        particleCount: 150,
+        spread: 100,
+        origin: { x: randomInRange(0.2, 0.8), y: randomInRange(0.2, 0.8) },
+        colors: ['#60A5FA', '#34D399', '#F472B6', '#A78BFA', '#FBBF24', '#EC4899', '#8B5CF6'],
+        ticks: 200,
+        gravity: 0.8,
+        scalar: 1.2,
+        shapes: ['star', 'circle'],
+        disableForReducedMotion: true
+      })
+
+      if (timeLeft > 0) {
+        requestAnimationFrame(firework)
+      }
+    }
+
+    firework()
+    setTimeout(() => setEasterEgg(false), 3000)
+  }
 
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
@@ -13,8 +51,7 @@ export default function Hero() {
       setKeySequence(newSequence.slice(-8))
 
       if (newSequence.endsWith('dltmdals')) {
-        setEasterEgg(true)
-        setTimeout(() => setEasterEgg(false), 3000)
+        triggerEasterEgg()
       }
     }
 
@@ -34,16 +71,25 @@ export default function Hero() {
         animate={{ 
           opacity: 1, 
           y: 0,
-          rotate: easterEgg ? [0, 360] : 0,
-          scale: easterEgg ? [1, 1.1, 1] : 1,
+          scale: easterEgg ? [1, 1.2, 0.9, 1.1, 1] : 1,
         }}
-        transition={{ duration: easterEgg ? 0.8 : 0.8 }}
+        transition={{ 
+          duration: easterEgg ? 1 : 0.8,
+          ease: "easeInOut"
+        }}
         className="container mx-auto px-4 text-center relative z-10"
       >
-        <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight ${easterEgg ? 'animate-rainbow-text' : ''}`}>
-          BDB부동산 <br /> <span className="text-blue-400">완벽한 공간</span>을<br />
+        <motion.h1 
+          animate={easterEgg ? {
+            rotate: [0, 5, -5, 5, 0],
+            transition: { duration: 0.5, repeat: 2 }
+          } : {}}
+          className={`text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight transition-all duration-300 ${easterEgg ? 'animate-rainbow-text' : ''}`}
+        >
+          BDB부동산 <br /> 
+          <span className={`text-blue-400 ${easterEgg ? 'animate-pulse' : ''}`}>완벽한 공간</span>을<br />
           찾아 드립니다
-        </h1>
+        </motion.h1>
         <p className="text-xl md:text-2xl mb-12 text-blue-100">
           당신의 사업이 별처럼 빛나길..
         </p>
@@ -110,14 +156,22 @@ export default function Hero() {
       </motion.div>
 
       {easterEgg && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 pointer-events-none"
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(37,99,235,0.1)_1px,transparent_1px)] bg-[length:20px_20px]" />
-        </motion.div>
+        <>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 1, repeat: 2 }}
+            className="fixed inset-0 pointer-events-none"
+          >
+            <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(37,99,235,0.2)_1px,transparent_1px)] bg-[length:20px_20px] animate-[ping_1s_ease-in-out_infinite]" />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-pink-500/10 animate-gradient-x pointer-events-none"
+          />
+        </>
       )}
     </section>
   )
