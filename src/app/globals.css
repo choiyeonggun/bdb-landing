@@ -36,3 +36,16 @@ body {
     @apply text-black;
   }
 }
+
+@keyframes rainbow-text {
+  0% { color: #60A5FA; }
+  20% { color: #34D399; }
+  40% { color: #F472B6; }
+  60% { color: #A78BFA; }
+  80% { color: #FBBF24; }
+  100% { color: #60A5FA; }
+}
+
+.animate-rainbow-text {
+  animation: rainbow-text 2s linear infinite;
+}

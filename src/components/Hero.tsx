@@ -1,8 +1,27 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useState, useEffect } from 'react'
 
 export default function Hero() {
+  const [easterEgg, setEasterEgg] = useState(false)
+  const [keySequence, setKeySequence] = useState('')
+
+  useEffect(() => {
+    const handleKeyPress = (e: KeyboardEvent) => {
+      const newSequence = keySequence + e.key
+      setKeySequence(newSequence.slice(-8))
+
+      if (newSequence.endsWith('dltmdals')) {
+        setEasterEgg(true)
+        setTimeout(() => setEasterEgg(false), 3000)
+      }
+    }
+
+    window.addEventListener('keypress', handleKeyPress)
+    return () => window.removeEventListener('keypress', handleKeyPress)
+  }, [keySequence])
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900">
       <div className="absolute inset-0 z-0">
@@ -12,11 +31,16 @@ export default function Hero() {
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        animate={{ 
+          opacity: 1, 
+          y: 0,
+          rotate: easterEgg ? [0, 360] : 0,
+          scale: easterEgg ? [1, 1.1, 1] : 1,
+        }}
+        transition={{ duration: easterEgg ? 0.8 : 0.8 }}
         className="container mx-auto px-4 text-center relative z-10"
       >
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight">
+        <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-white leading-tight ${easterEgg ? 'animate-rainbow-text' : ''}`}>
           BDB부동산 <br /> <span className="text-blue-400">완벽한 공간</span>을<br />
           찾아 드립니다
         </h1>
@@ -84,6 +108,17 @@ export default function Hero() {
           </div>
         </motion.div>
       </motion.div>
+
+      {easterEgg && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 pointer-events-none"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(37,99,235,0.1)_1px,transparent_1px)] bg-[length:20px_20px]" />
+        </motion.div>
+      )}
     </section>
   )
 } 
