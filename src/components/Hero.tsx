@@ -1,19 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900">
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero-bg.jpg"
-          alt="Modern building"
-          fill
-          className="object-cover opacity-20"
-          priority
-        />
         {/* 그라데이션 오버레이 */}
         <div className="absolute inset-0 bg-gradient-to-b from-blue-900/50 to-blue-900/80" />
       </div>
