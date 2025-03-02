@@ -5,15 +5,18 @@ import Header from "../components/Header";
 import Footer from '@/components/Footer'
 import JsonLd from '@/components/JsonLd'
 import FloatingCallButton from '@/components/FloatingCallButton'
+import { GeistSans } from 'geist/font/sans'
+import { GeistMono } from 'geist/font/mono'
 
 const inter = Inter({ subsets: ["latin"] });
 
+const title = 'BDB부동산 - 홍대입구 상가, 사무실 부동산 전문'
+const description = '홍대, 합정, 연남동 지역 부동산 전문. 상가, 사무실 매매 및 임대차. 무권리, 통임대, 사옥, 카페, 스튜디오 등 다양한 매물 보유. 친절하고 전문적인 상담.'
+
 export const metadata: Metadata = {
-  title: {
-    default: 'BDB부동산 - 홍대입구 상가, 사무실 부동산 전문',
-    template: '%s | BDB부동산'
-  },
-  description: '홍대, 합정, 연남동 지역 부동산 전문. 상가, 사무실 매매 및 임대차 전문. 무권리, 통임대 등 다양한 매물 보유.',
+  title,
+  description,
+  metadataBase: new URL('https://bdbagent.kr'),
   keywords: [
     '홍대부동산추천', '합정부동산추천', '홍대상가', '홍대사무실', '홍대부동산', 
     '홍대무권리', '합정상가', '합정부동산', '합정사무실', '연남동부동산', 
@@ -34,18 +37,20 @@ export const metadata: Metadata = {
     maximumScale: 1,
   },
   openGraph: {
-    type: 'website',
-    locale: 'ko_KR',
-    url: 'https://bdb-estate.com',
-    title: 'BDB부동산 - 홍대입구 상가, 사무실 부동산 전문',
-    description: '홍대, 합정, 상수, 망원 지역의 상가, 사무실 부동산 전문. 점포, 사무실, 주택 매매 및 임대차 전문.',
+    title,
+    description,
+    url: 'https://bdbagent.kr',
     siteName: 'BDB부동산',
-    images: [{
-      url: '/images/og-image.jpg',
-      width: 1200,
-      height: 630,
-      alt: 'BDB부동산'
-    }],
+    locale: 'ko_KR',
+    type: 'website',
+    images: [
+      {
+        url: '/favicon/android-icon-192x192.png',
+        width: 192,
+        height: 192,
+        alt: 'BDB부동산'
+      }
+    ]
   },
   alternates: {
     canonical: 'https://bdbagent.kr'
@@ -56,7 +61,10 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-    },
+      'max-snippet': -1,
+      'max-image-preview': 'large',
+      'max-video-preview': -1
+    }
   },
 };
 
@@ -66,7 +74,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <JsonLd />
         <meta name="naver-site-verification" content="87a0c78c424cd2b7e68fb70695c441d4e5a39c2a" />
